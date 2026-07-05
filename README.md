@@ -10,4 +10,14 @@ This repository contains a collection of AI agent skills following the standard 
 
 ## Usage
 
+[![skills.sh](https://skills.sh/b/alharkan7/skills)](https://skills.sh/alharkan7/skills)
+
+Because this repository follows the open standard, you can install these skills directly into your agent environment using the open-source `skills` CLI:
+
+```bash
+npx skills add alharkan7/skills/2d-motion-graphics
+npx skills add alharkan7/skills/3d-motion-graphics
+npx skills add alharkan7/skills/svg-diagram
+```
+
 Agents that support the `agentskills` format can dynamically load and execute these skills when required to complete a task. Each skill folder contains a `SKILL.md` detailing exactly how the skill should be executed.
