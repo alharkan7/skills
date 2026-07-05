@@ -47,25 +47,7 @@ When a user requests a "beautiful", "modern", or "soft" diagram, adhere to these
     4. Draw the text.
 *   **Emojis as Icons:** If SVGs paths for icons are too complex to generate, use emojis inside `<text>` tags (e.g., ⚙️, 🛡️, 💰) centered perfectly over a small circular background pad.
 
-## Example Skeleton
-```xml
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%">
-  <defs>
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#a0b0c0" flood-opacity="0.15" />
-    </filter>
-  </defs>
-  
-  <rect width="1000" height="600" fill="#f8fafc" />
-  
-  <g font-family="Inter, Helvetica Neue, sans-serif">
-    <text x="50" y="50" font-size="24" font-weight="bold" fill="#0f172a">Diagram Title</text>
-    
-    <!-- Connector behind card -->
-    <path d="M 250 150 Q 500 150 500 300" stroke="#cbd5e1" stroke-width="3" fill="none" />
-    
-    <!-- Elevated Card -->
-    <rect x="50" y="100" width="400" height="200" rx="12" fill="#ffffff" filter="url(#shadow)" stroke="#e2e8f0" />
-  </g>
-</svg>
-```
+## 6. Supporting Files
+
+*   **Template:** When starting a new diagram, base your structure on `assets/template.svg`.
+*   **Design Styles:** For inspiration on colors, shadows, bounding boxes, and routing aesthetics, refer to `references/styles.md`.

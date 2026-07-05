@@ -77,4 +77,4 @@ The Mograph Player (`/mograph/sequences/`) renders HTML sequences frame-by-frame
 ## 7. Supporting Files
 
 *   **Template:** When starting a new sequence, you can base your structure on `assets/template.html`.
-*   **Design Explorations:** For inspiration on advanced visual patterns (Glassmorphism, HUDs, Isometric paths, etc.), refer to `references/explorations.md` and `references/explorations-v2.md`.
+*   **Design Explorations:** For inspiration on advanced visual patterns (Glassmorphism, HUDs, Isometric paths, etc.), refer to `references/styles.md`.

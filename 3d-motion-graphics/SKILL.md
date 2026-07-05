@@ -63,3 +63,8 @@ The ThreeJS Player (`/threejs/animations/`) features playback controls and compo
 3. Ensure `preserveDrawingBuffer: true` and `alpha: true` are set on the `WebGLRenderer`.
 4. Update `/threejs/animations/manifest.json`: `{ "folder": "<name>", "name": "..." }`
 5. Inform the user they can test in the ThreeJS player and use the **Export Video** button.
+
+## 6. Supporting Files
+
+*   **Template:** When starting a new 3D animation, use the boilerplate structure provided in `assets/template.html`.
+*   **Explorations:** For inspiration on advanced visual patterns (Particles, Data Topography, Isometric Dioramas), read `references/styles.md`.
