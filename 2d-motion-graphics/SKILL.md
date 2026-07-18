@@ -1,11 +1,11 @@
 ---
 name: 2d-motion-graphics
-description: Use when the user wants to create a new motion graphics animation HTML sequence for the Mograph Player application. Covers best practices for CSS animation timing, responsiveness, design aesthetics, specific motion patterns, and the Mograph export contract.
+description: Use when the user wants to create a new motion graphics animation HTML sequence. Covers best practices for CSS animation timing, responsiveness, design aesthetics, and specific motion patterns.
 ---
 
-# Mograph Sequence Authoring
+# HTML Sequence Authoring
 
-The Mograph Player (`/mograph/sequences/`) renders HTML sequences frame-by-frame for video export. Strict rules regarding layout, CSS animations, and design must be followed.
+HTML sequences can be rendered frame-by-frame for video export. Strict rules regarding layout, CSS animations, and design should be followed for optimal results.
 
 ## 1. Core Architecture Contract
 
@@ -69,12 +69,11 @@ The Mograph Player (`/mograph/sequences/`) renders HTML sequences frame-by-frame
 
 ## 6. Workflow Checklist
 
-1. Create the HTML sequence in `/mograph/sequences/<name>.html`.
+1. Create the HTML sequence file.
 2. Apply the design and animation rules.
-3. Update `/mograph/sequences/manifest.json`: `{ "file": "<name>.html", "name": "..." }`
-4. Inform the user they can test in the Mograph player and export as video.
+3. Test the sequence in a browser to ensure smooth playback and correct timing.
+4. Prepare for video export if required.
 
-## 7. Supporting Files
+## 7. Design Explorations
 
-*   **Template:** When starting a new sequence, you can base your structure on `assets/template.html`.
-*   **Design Explorations:** For inspiration on advanced visual patterns (Glassmorphism, HUDs, Isometric paths, etc.), refer to `references/styles.md`.
+*   **Inspiration:** Draw inspiration from advanced visual patterns (Glassmorphism, HUDs, Isometric paths, etc.).

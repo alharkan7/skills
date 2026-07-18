@@ -1,19 +1,19 @@
 ---
 name: 3d-motion-graphics
-description: Use when the user wants to create a new 3D motion graphics animation using Three.js for the ThreeJS Player application. Covers best practices for Three.js scene setup, animation loops, lighting, composite video export rules, and manifest registration.
+description: Use when the user wants to create a new 3D motion graphics animation using Three.js. Covers best practices for Three.js scene setup, animation loops, lighting, and composite video export rules.
 ---
 
-# Three.js Mograph Sequence Authoring
+# Three.js Motion Graphics Authoring
 
-The ThreeJS Player (`/threejs/animations/`) features playback controls and composite WebM video export. Strict architectural rules are required to ensure canvas pixels export correctly.
+Three.js animations can be built for web playback and composite WebM video export. Strict architectural rules are recommended to ensure canvas pixels export correctly.
 
 ## 1. Core Architecture & Export Contract
 
 *   **Export-Safe Canvas:** 
     *   ✅ **CRITICAL:** You MUST set `{ alpha: true, antialias: true, preserveDrawingBuffer: true }` on the `WebGLRenderer`. Without `preserveDrawingBuffer`, video exports will be blank/black.
 *   **Transparent Backgrounds:** 
-    *   ✅ Let the player manage backgrounds via CSS composite logic. 
-    *   🚫 Do NOT use `scene.background = new THREE.Color(...)` in your Three.js code. 
+    *   ✅ Manage backgrounds via CSS composite logic when transparency is needed. 
+    *   🚫 Avoid using `scene.background = new THREE.Color(...)` in your Three.js code if exporting with transparency.
 *   **Vite Compatibility:**
     *   ✅ Import dependencies using bare module specifiers: `import * as THREE from 'three';` and `import { OrbitControls } from 'three/addons/controls/OrbitControls.js'`.
     *   🚫 Do NOT use CDNs (`https://unpkg.com...`), and do NOT inject `<script type="importmap">`.
@@ -21,10 +21,10 @@ The ThreeJS Player (`/threejs/animations/`) features playback controls and compo
 ## 2. Animation, Timing & Controls
 
 *   **The Render Loop:**
-    *   ✅ All animation logic (rotations, tweening) MUST happen inside the `requestAnimationFrame(animate)` loop. 
-    *   🚫 Do NOT use `setInterval` or `setTimeout`. They ignore the player's Pause/Play/Rewind controls.
+    *   ✅ All animation logic (rotations, tweening) should happen inside the `requestAnimationFrame(animate)` loop. 
+    *   🚫 Avoid `setInterval` or `setTimeout` as they can desync from external playback controls.
 *   **Duration Communication:** 
-    *   ✅ The player uses DOM Web Animations API (`document.getAnimations()`) to calculate the end time for auto-stopping recordings. Apply dummy Web Animations to an invisible DOM element (e.g., `<div id="timing-dummy"></div>`) if your scene uses pure Three.js math looping, so the player knows when to stop.
+    *   ✅ External recording tools often use the DOM Web Animations API (`document.getAnimations()`) to calculate the end time. Consider applying dummy Web Animations to an invisible DOM element (e.g., `<div id="timing-dummy"></div>`) if your scene uses pure Three.js math looping, so external recorders know when to stop.
 *   **Native Math Tweening:** 
     *   ✅ Prefer native math-based easing (e.g., `(time % loopDuration)`) inside the render loop over external libraries like GSAP for perfect video export loops.
 *   **Cinematic Camera:** 
@@ -38,7 +38,7 @@ The ThreeJS Player (`/threejs/animations/`) features playback controls and compo
 *   **CAD / Blueprint Overlays:**
     *   ✅ For glowing wireframes, pair `THREE.EdgesGeometry` with `THREE.LineSegments`. This looks far superior to basic `material.wireframe = true`.
 *   **Legibility & Contrast:**
-    *   ✅ The player's default composite background is white. For `CanvasTexture` text, use high-contrast text colors and add a subtle white halo (`shadowColor = 'rgba(255,255,255,0.9)'`) to guarantee legibility.
+    *   ✅ For `CanvasTexture` text, use high-contrast text colors and consider adding a subtle halo (`shadowColor = 'rgba(255,255,255,0.9)'`) to guarantee legibility against variable backgrounds.
     *   ✅ **Dual Materials for TextGeometry:** Reflective front faces can be unreadable. Use an array `[frontMat, sideMat]`: flat/emissive material for the front, highly reflective material for the extruded sides.
 *   **Flat Shading (Low-Poly):**
     *   ✅ To get crisp, faceted low-poly lighting (e.g., on `PlaneGeometry`), you MUST convert the geometry using `geometry.toNonIndexed()` before displacing vertices, then set `flatShading: true` on the material.
@@ -58,13 +58,11 @@ The ThreeJS Player (`/threejs/animations/`) features playback controls and compo
 
 ## 5. Workflow Checklist
 
-1. Create a new directory: `/threejs/animations/<name>/`.
-2. Add `index.html` containing the Three.js scene (use ES modules).
-3. Ensure `preserveDrawingBuffer: true` and `alpha: true` are set on the `WebGLRenderer`.
-4. Update `/threejs/animations/manifest.json`: `{ "folder": "<name>", "name": "..." }`
-5. Inform the user they can test in the ThreeJS player and use the **Export Video** button.
+1. Create a new directory for your animation.
+2. Add an `index.html` containing the Three.js scene (use ES modules).
+3. Ensure `preserveDrawingBuffer: true` and `alpha: true` are set on the `WebGLRenderer` if video export is intended.
+4. Test the sequence in a browser to ensure smooth playback and correct timing.
 
-## 6. Supporting Files
+## 6. Design Explorations
 
-*   **Template:** When starting a new 3D animation, use the boilerplate structure provided in `assets/template.html`.
-*   **Explorations:** For inspiration on advanced visual patterns (Particles, Data Topography, Isometric Dioramas), read `references/styles.md`.
+*   **Inspiration:** Draw inspiration from advanced visual patterns like Particles, Data Topography, and Isometric Dioramas.
