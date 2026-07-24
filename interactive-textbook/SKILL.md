@@ -68,3 +68,7 @@ Concepts that the student already understands:
 Lets first fan out with 1 agent for 1 top-level heading, with the agent generate the react components + provide report on prerequisite concepts, with adversarial review, queued after; then take the union of all prerequisite concepts, start the nested tooltips loop with a worker pool side of 4, each worker taking on at most 8 concepts, and iterate until there are no more unknown concepts. setup a repo with vite + react + ts + tailwind, plus a components library before you launch the workflow
 
 Future: analytics, quizzes
+
+## Credits
+
+Creator: [Sophia Xu](https://x.com/thesophiaxu)
